@@ -1,0 +1,96 @@
+<h1>Consulta donde esta más economica la canasta familiar</h1>
+
+<h2>Crear nuevo registro </h2>
+
+<table>
+    <tr>
+        <th>Productos</th>
+            <th>Tiendas</th>
+            <th>Precio</th>
+            <th>Accion</th>
+    </tr>
+    <tr>
+        <td>
+            <select *ngIf="productosControl" [(ngModel)]="nuevoProducto" >
+                <option *ngFor="let producto of productos" >{{producto}}</option>
+            </select>
+        </td>
+        <td>
+            <select *ngIf="tiendasControl" [(ngModel)]="nuevaTienda" >
+                <option *ngFor="let tienda of tiendas" >{{tienda}}</option>
+            </select>
+        </td>
+        <td>
+            <input type="number" [(ngModel)]="nuevoPrecio" class="formControl" placeholder="valor">
+        </td>
+        <td>
+            <button (click)="crearRegistro()" >Crear</button>
+        </td>
+    </tr>
+</table>
+
+<h2>Digita aqui el producto que quieres consultar</h2>
+{{ mensaje }}
+<input [(ngModel)]="nombreProducto" class="formControl" placeholder="producto">
+<br>
+<button style="margin-top: 30px;" (click)="buscarProducto()">BUSCAR </button>
+<br>
+
+
+
+
+
+<!-- <h3>Productos</h3>
+
+
+<h3>Tienda</h3>
+
+
+<h3>$ Precio</h3> -->
+
+
+
+<br>
+<br>
+
+<div *ngIf="registros.length > 0">
+
+    <table class="default" style="border: 1px;">
+
+        <tr>
+            <th>Id</th>
+
+            <th>Producto</th>
+            <th>Tienda</th>
+            <th>Precio</th>
+            <th>Editar</th>
+            <th>Borrar</th>
+
+        </tr>
+
+        <tr *ngFor="let registro of registros">
+            <td>{{ registro.id }}</td>
+            <td>{{ registro.producto }}</td>
+            <td>{{ registro.tienda }}</td>
+            <td>{{ registro.precio }}</td>
+            <td><button (click)="editarProducto(registro)">Editar</button></td>
+            <td><button (click)="borrarProductoApi(registro)">Borrar</button></td>
+
+        </tr>
+
+    </table>
+
+    <div *ngIf="editarControl">
+
+        <h3>Digite el nuevo precio para el producto {{ editValue.producto }}
+            de la tienda {{ editValue.tienda }} con el id {{ editValue.id }} </h3>
+
+
+        <input type="number" [(ngModel)]="nuevoValor" class="formControl" placeholder="valor">
+
+        <button (click)="editarProductoApi()">Editar</button>
+
+
+
+    </div>
+</div>
